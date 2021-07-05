@@ -1,13 +1,15 @@
-{ pkgs ? import <nixpkgs> {  } }:
-
+{ pkgs ? import <nixpkgs> { } }:
+let
+  pulumiInstall = pkgs.writeShellScriptBin "pulumi-install" ''
+    set -e
+    ${pkgs.curl}/bin/curl -fsSL https://get.pulumi.com | sh
+    ${pkgs.nodejs}/bin/npm install
+  '';
+in
 pkgs.stdenv.mkDerivation {
   name = "pulumi-env";
-  buildInputs = with pkgs; [ nodejs pulumi-bin ];
+  buildInputs = with pkgs; [ nodejs pulumiInstall ];
   shellHook = ''
-    read -p "Shell (empty for bash): " newshell
-    if [ ! -z "$newshell" ]
-    then
-      exec $newshell
-    fi
+    export PATH="$HOME/.pulumi/bin:$PATH"
   '';
 }

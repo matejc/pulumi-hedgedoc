@@ -1,3 +1,8 @@
 encryptionsalt: v1:antO7YKwLEM=:v1:RiHYTYENdJmsgX8Z:o0rVHhfYvrjd+NUB6r9f5LIG2TFFyQ==
 config:
-  aws:region: us-east-1
+  aws:profile: mcotman
+  aws:region: eu-west-1
+  pulumi1:db_password:
+    secure: v1:NvIDiHOjQydRpafQ:nZpJtNwa3kyYVW4rSNuzLPGdixjWyeDYJFX6AnQEFBM=
+  pulumi1:session_secret:
+    secure: v1:PRamHjD/eqjTFJCp:vmJuhrLPf1hM4xTNI2HzVKleq7foHHHVAq7wGa7sEh1wYdAlT6I1iVvxhXK7Jjs9
