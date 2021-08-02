@@ -8,8 +8,12 @@ let
 in
 pkgs.stdenv.mkDerivation {
   name = "pulumi-env";
-  buildInputs = with pkgs; [ nodejs pulumiInstall ];
+  buildInputs = with pkgs; [ awscli nodejs pulumiInstall ];
   shellHook = ''
+    if [ ! -d "$HOME/.pulumi" ] || [ ! -d "./node_modules" ]
+    then
+      pulumi-install
+    fi
     export PATH="$HOME/.pulumi/bin:$PATH"
   '';
 }
