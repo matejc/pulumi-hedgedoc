@@ -2,7 +2,6 @@ import * as pulumi from "@pulumi/pulumi";
 import * as awsx from "@pulumi/awsx";
 import * as aws from "@pulumi/aws";
 import * as tls from "@pulumi/tls";
-//import * as network from "./network";
 
 export class HedgeDoc extends pulumi.ComponentResource {
 
