@@ -9,9 +9,7 @@ export class HedgeDoc extends pulumi.ComponentResource {
 
     constructor(public readonly name: string = "hedgedoc1", opts: pulumi.ResourceOptions = {}) {
         super('custom:resource:HedgeDoc', name, {}, opts);
-    }
 
-    public async setup() {
         const cfg = new pulumi.Config();
 
         const vpcx = new awsx.ec2.Vpc(`${this.name}-vpc`, {
@@ -210,18 +208,6 @@ export class HedgeDoc extends pulumi.ComponentResource {
     }
 }
 
-interface IIndexable {
-    [key: string]: any;
-}
+let hedgeDoc: HedgeDoc = new HedgeDoc();
 
-let hedgeDoc: HedgeDoc | null = null;
-
-async function getOutput(name: string) {
-    if (!hedgeDoc) {
-        hedgeDoc = new HedgeDoc();
-        await hedgeDoc.setup();
-    }
-    return (hedgeDoc as IIndexable)[name];
-}
-
-export const hostname = getOutput("hostname");
+export const hostname = hedgeDoc.hostname;
