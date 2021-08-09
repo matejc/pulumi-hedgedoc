@@ -118,6 +118,7 @@ export class HedgeDoc extends pulumi.ComponentResource {
             path: "/system/"
         }, { parent: this });
         const bucket = new aws.s3.Bucket(`${this.name}-bucket`, {
+            forceDestroy: true
         }, { parent: this });
         new aws.iam.UserPolicy(`${this.name}-s3-user-policy`, {
             user: s3User.name,
